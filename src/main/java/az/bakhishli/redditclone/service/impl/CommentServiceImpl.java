@@ -54,9 +54,6 @@ public class CommentServiceImpl implements CommentService {
                     + " posted a comment on your post. " + POST_URL);
             sendCommentNotification(message, post.getUser());
 
-//        catch (Exception e){
-//            throw new UsernameNotFoundException("Username not found " + e);
-//        }
     }
 
     @Override

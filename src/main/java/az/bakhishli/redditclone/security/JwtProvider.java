@@ -26,7 +26,7 @@ import static java.util.Date.from;
 @Service
 public class JwtProvider {
 
-    @Value("${security.jwt.token.expire-length}")
+    @Value("${security.jwt.token.expire-time}")
     private Long jwtExpirationInMillis;
 
     @Value("${security.jwt.token.secret-key}")
