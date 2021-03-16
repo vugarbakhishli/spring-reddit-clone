@@ -1,0 +1,53 @@
+databaseChangeLog:
+  - changeSet:
+      id: 20210213-04
+      author: vugarbakhishli
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_comment_id
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created_date
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: text
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: post_id
+                  type: BIGINT(20)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: user_id
+                  type: BIGINT(20)
+              - addForeignKeyConstraint:
+                  baseColumnNames: post_id
+                  baseTableName: comments
+                  constraintName: fk_post_id
+                  deferrable: false
+                  initiallyDeferred: false
+                  referencedColumnNames: id
+                  referencedTableName: posts
+                  validate: true
+              - addForeignKeyConstraint:
+                  baseColumnNames: user_id
+                  baseTableName: comments
+                  constraintName: fk_user_id
+                  deferrable: false
+                  initiallyDeferred: false
+                  referencedColumnNames: id
+                  referencedTableName: users
+                  validate: true
+            tableName: comments

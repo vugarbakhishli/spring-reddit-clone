@@ -1,0 +1,23 @@
+version: '3.1'
+services:
+  mysql:
+    container_name: redditclone_mysql
+    hostname: mysql
+    image: mysql:5.7
+    restart: always
+    volumes:
+      - redditclone_db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: mcvg1234
+    ports:
+      - 3306:3306
+  adminer:
+    container_name: redditclone_adminer
+    hostname: mysql
+    image: adminer
+    restart: always
+    ports:
+      - 8580:8080
+
+volumes:
+  redditclone_db_data:

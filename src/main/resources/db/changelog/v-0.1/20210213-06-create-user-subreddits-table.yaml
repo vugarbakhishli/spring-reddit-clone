@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: 20210213-06
+      author: vugarbakhishli
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: user_id
+                  type: bigint
+              - column:
+                  name: subreddit_id
+                  type: bigint
+            tableName: user_subreddits

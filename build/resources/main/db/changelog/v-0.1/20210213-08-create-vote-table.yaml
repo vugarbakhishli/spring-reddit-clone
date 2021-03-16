@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: 20210213-08
+      author: vugarbakhishli
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT(20)
+              - column:
+                  name: vote_type
+                  type: INT(11)
+              - column:
+                  name: post_id
+                  type: BIGINT(20)
+              - column:
+                  name: user_id
+                  type: BIGINT(20)
+              - addForeignKeyConstraint:
+                  baseColumnNames: post_id
+                  baseTableName: votes
+                  constraintName: fk_post_id
+                  deferrable: false
+                  initiallyDeferred: false
+                  referencedColumnNames: id
+                  referencedTableName: posts
+                  validate: true
+              - addForeignKeyConstraint:
+                  baseColumnNames: user_id
+                  baseTableName: votes
+                  constraintName: fk_user_id
+                  deferrable: false
+                  initiallyDeferred: false
+                  referencedColumnNames: id
+                  referencedTableName: users
+                  validate: true
+            tableName: votes

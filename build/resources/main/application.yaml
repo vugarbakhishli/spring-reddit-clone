@@ -1,0 +1,50 @@
+spring:
+  jackson:
+    serialization:
+      indent-output: true
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: &connectionUrl jdbc:mysql://${DB_CONNECTION_IP:localhost}:${DB_CONNECTION_PORT:3306}/redditclone?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=UTF-8
+    username: &username ${DB_CONNECTION_USERNAME:root}
+    password: &password ${DB_CONNECTION_PASSWORD:mcvg1234}
+    hikari:
+      pool-name: RedditCloneHikariCP
+      auto-commit: true
+      connection-timeout: 10000
+      idle-timeout: 60000
+      max-lifetime: 120000
+      minimum-idle: 5
+      maximum-pool-size: 10
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+  jpa:
+    database: mysql
+    open-in-view: false
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    show-sql: true
+    generate-ddl: true #false eliyersen
+    hibernate:
+      ddl-auto: update #none qoyarsan
+
+      ##### SMTP Mail Properties ####
+  mail:
+    host: smtp.mailtrap.io
+    port: 2525
+    username: 933f0c52123bd7
+    password: d10d7d285c0f02
+    protocol: smtp
+  security:
+    user:
+      name: vugarbakhishli
+      password: mcvg1234
+
+security:
+  jwt:
+    token:
+      secret-key: redditClone
+      expire-length: 3600000000
+

@@ -1,0 +1,55 @@
+plugins {
+	id 'org.springframework.boot' version "$springBootVersion"
+	id 'io.spring.dependency-management' version "$springDependencyManagerVersion"
+	id 'java'
+	id "org.jetbrains.kotlin.jvm" version "1.4.31"
+}
+
+group = 'az.bakhishli'
+def hash = 'git rev-parse --short HEAD'.execute().text.trim()
+version = "$projectVersion.$hash"
+
+sourceCompatibility = jdk_version
+targetCompatibility = jdk_version
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+
+}
+
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation "io.jsonwebtoken:jjwt-impl:${jjwtVersion}"
+	implementation "io.jsonwebtoken:jjwt-jackson:${jjwtVersion}"
+	implementation "io.jsonwebtoken:jjwt-api:${jjwtVersion}"
+	implementation 'org.mapstruct:mapstruct:1.4.2.Final'
+	implementation 'com.google.code.findbugs:jsr305:3.0.2'
+	compileOnly "org.projectlombok:lombok:${lombokVersion}"
+	compileOnly "org.modelmapper:modelmapper:${modelmapperVersion}"
+	compileOnly "io.springfox:springfox-boot-starter:${springfoxStarterVersion}"
+	compileOnly "io.springfox:springfox-swagger-ui:${springfoxSwaggerUiVersion}"
+	compile "com.github.marlonlom:timeago:${timeAgoPluginVersion}"
+	compile "org.springframework.boot:spring-boot-starter-thymeleaf:${thymeleafVersion}"
+	runtimeOnly 'mysql:mysql-connector-java'
+	annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+
+
+}
+
+test {
+	useJUnitPlatform()
+}

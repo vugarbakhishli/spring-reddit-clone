@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: 20210213-05
+      author: vugarbakhishli
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_token_id
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: expiry_date
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: token
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: user_id
+                  type: BIGINT(20)
+            tableName: tokens
